@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+	xmlns:of="http://omnifaces.org/functions" >
+
+
+<h:head>
+<style type="text/css">
+.ui-panel {
+	margin: 15px;
+	width: 100px;
+}
+</style>
+</h:head>
+
+<h:body>
+
+<h:form>
+<p:growl id="msgs" showDetail="true" />
+    
+<p:orderList id="ol" value="#{indexBean.imageList}" var="img" controlsLocation="none" itemLabel="#{img}" itemValue="#{img}" >
+<p:ajax event="select" listener="#{indexBean.onSelect}" update="msgs panel ol"/>
+</p:orderList>
+
+<p:outputPanel id="panel"  deferred="true">
+
+<c:forEach items="#{indexBean.selectedImages}" var="sel" >
+<c:set var="string2" value="left" />
+<p:panel id="#{of:replaceAll(sel, '.png', '')}" header="#{of:capitalize(of:replaceAll(sel, '.png', '')) }" style="text-align:center">
+<p:graphicImage library="images" name="#{sel}" style="width:70px;height:70px;margin:auto"/>
+</p:panel>
+<p:draggable for="#{of:replaceAll(sel, '.png', '')}" />
+</c:forEach>
+
+</p:outputPanel>
+    
+
+</h:form>
+
+</h:body>
+
+
+</html>
