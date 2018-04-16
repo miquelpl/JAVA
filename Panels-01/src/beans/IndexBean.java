@@ -18,8 +18,8 @@ import org.primefaces.event.SelectEvent;
 
 public class IndexBean {
 	
-	List<String> imageList = new ArrayList<>();
-	List<String> selectedImages = new ArrayList<>();
+	private List<String> imageList = new ArrayList<>();
+	private List<String> selectedImages = new ArrayList<>();
 	
 	public IndexBean() {
 	}

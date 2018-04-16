@@ -16,11 +16,12 @@
 </h:head>
 
 <h:body>
+
 <h:form id="oreja">
 <p:commandButton id="button" value="Escucha" onclick="escucha('de-DE')" />
-<p:inputTextarea id="pizarra" rows="50" cols="128" />
+<h:inputHidden id="pizarra" value="#{escuchaBean.satz}" />
+<p:remoteCommand name="rc" actionListener="#{escuchaBean.addSatz}" />
 </h:form>
+
 </h:body>
-
-
 </html>
